@@ -1,11 +1,12 @@
+const config = require("./config.json");
 const maxApi = require("max-api");
 const Discord = require("discord.js");
-const client = new Discord.Client();
 
-const config = require("./config.json");
 const prefix = config.prefix;
 const testchannel = config.testchannel;
 const ktschannel = config.ktschannel;
+
+const client = new Discord.Client();
 
 client.login(config.token);
 
@@ -15,7 +16,7 @@ client.on("ready", () => {
 	maxApi.addHandler("text", (...maxargs) => {
 		let str = maxargs.toString();
 		let output = str.replace(/,/g, " ");
-		client.channels.cache.get(testchannel).send("maxpatch zegt: " + output);
+		client.channels.cache.get(testchannel).send("maxpatch says: " + output);
 	});
 
 })
@@ -40,6 +41,13 @@ client.on("message", msg => {
 		case "🎺":
 			msg.channel.send(":smiling_imp:TerrorHans666:smiling_imp:")
 			break;
+		case "info":
+			if(args[1] == "hz") {
+				msg.reply("hiermee kan je de toonhoogte aanpassen!");
+			} else {
+				msg.channel.send(msg.author.toString() + "```Typ !info command voor info over dat command!\n\nMogelijke commands:\nhz```")
+			}
+		break;
 	}
 
 });
