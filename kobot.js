@@ -16,7 +16,11 @@ client.on("ready", () => {
 	maxApi.addHandler("text", (...maxargs) => {
 		let str = maxargs.toString();
 		let output = str.replace(/,/g, " ");
-		client.channels.cache.get(testchannel).send("maxpatch says: " + output);
+		if (output == "") {
+			return;
+		} else {
+			client.channels.cache.get(ktschannel).send("maxpatch says: " + output);
+		}
 	});
 
 })
