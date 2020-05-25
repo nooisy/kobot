@@ -1,12 +1,12 @@
 const config = require("./config.json");
 const maxApi = require("max-api");
 const Discord = require("discord.js");
-const client = new Discord.Client();
 
+const client = new Discord.Client();
 const prefix = config.prefix;
-const testchannel = config.testchannel;
-const ktschannel = config.ktschannel;
-const channel = ktschannel; // text from maxpatch goes to this channel
+
+// text from maxpatch goes to this channel
+const channel = config.ktschannel;;
 
 client.on("ready", () => {
 
@@ -16,14 +16,14 @@ client.on("ready", () => {
 	maxApi.addHandler("text", (...maxargs) => {
 		let str = maxargs.toString();
 		let output = str.replace(/,/g, " ");
-		if (output == "") {
+		if (output == "" || output.startsWith("!") == true) {
 			return;
 		} else {
 			client.channels.cache.get(channel).send("maxpatch says: " + output);
 		}
 	});
 
-})
+});
 
 client.on("message", msg => {
 
@@ -44,17 +44,14 @@ client.on("message", msg => {
 		case "ping":
 			msg.channel.send("pong!")
 			break;
-		case "🎺":
-			msg.channel.send(":smiling_imp:TerrorHans666:smiling_imp:")
-			break;
 		case "info":
-			if(args[1] == "testvraag") {
-				msg.reply("hiermee test je een eenmalige vraag. De tijd waarin kan worden geantwoord kan worden ingesteld door het aantal secondes op te geven: `!testvraag <tijd>`. Geef je geen tijd op, dan heb je 5 seconden om de vraag te antwoorden.");
+			if(args[1] == "test") {
+				msg.reply("Test a question. You can specify the time to answer in seconds. Default is 5.");
 				break;
 			}
 			else {
 				msg.channel.send(msg.author.toString() +
-				"```Typ !info <command> voor info over dat command!\n\nMogelijke commands:\ntestvraag```");
+				"```Type !info <command> for more information about that command!\n\nPossible commands:\ntest```");
 				break;
 			}
 	}
@@ -63,13 +60,14 @@ client.on("message", msg => {
 
 client.on("message", async msg => {
 
+	if (!msg.content.startsWith(prefix)) return;
 	if (msg.author.bot) return;
 
 	let args = msg.content.substring(prefix.length).split(" ");
 
-	if (msg.content.startsWith("!testvraag")) {
+	if (msg.content.startsWith("!test")) {
 
-		if (args.length === 1) {
+		if (args.length == 1) {
 			args.push("5");
 		}
 
@@ -91,10 +89,8 @@ client.on("message", async msg => {
 				if(user.bot) return false;
 				if(["1️⃣", "2️⃣"].includes(reaction.emoji.name)) {
 					if(quizMap.get(reaction.message.id).get(user.id)) {
-						// console.log("User already voted.");
 						return false;
 					} else {
-						// console.log("User voted.");
 						userMap.set(user.id, reaction.emoji.name);
 						return true;
 					}
@@ -118,15 +114,13 @@ client.on("message", async msg => {
 				optionTwoResults = optionTwo.users.cache.filter(u => !u.bot).size;
 			}
 
-			// console.log(`${item.answer1}: ${optionOneResults} \n${item.answer2}: ${optionTwoResults}`);
-
 			const resultsEmbed = new Discord.MessageEmbed()
 				.setColor("#ff007f")
 				.setTitle("Results: " + item.question)
 				.setDescription(`1️⃣ ${item.answer1}: **${optionOneResults}**\n\n 2️⃣ ${item.answer2}: **${optionTwoResults}**`);
 
 			await msg.channel.send(resultsEmbed);
-			maxApi.outlet(`results ${optionOneResults} ${optionTwoResults}`);
+			maxApi.outlet(`results "${item.question}" "${item.answer1}" "${item.answer2}" "${optionOneResults}" "${optionTwoResults}"`);
 			qmsg.delete({ timeout: 0 });
 
 		} catch(err) {

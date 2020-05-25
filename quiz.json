@@ -1,22 +1,12 @@
 [
   {
-    "question": "Dit is een vraag?",
-    "answer1": "Blablablan",
-    "answer2": "Albalbalb"
+    "question": "Sample question 1?",
+    "answer1": "foo",
+    "answer2": "bar"
   },
   {
-    "question": "Is dit een vraag?",
-    "answer1": "Blablablan",
-    "answer2": "Albalbalb"
-  },
-  {
-    "question": "Wat is een vraag?",
-    "answer1": "Blablablan",
-    "answer2": "Albalbalb"
-  },
-  {
-    "question": "Hoe is een vraag?",
-    "answer1": "Blablablan",
-    "answer2": "Albalbalb"
+    "question": "Question sample 2?",
+    "answer1": "barfoo",
+    "answer2": "foobar"
   }
 ]
