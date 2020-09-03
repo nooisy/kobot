@@ -1,11 +1,12 @@
 # kobot
-[kobot](http://www.youtube.com/watch?v=hQeKjJweCzM) exchanges information between Discord and Max/MSP. Its goal is to provide a connection between live performers and the audience.
+[short demo vid](http://www.youtube.com/watch?v=hQeKjJweCzM)<br><br>
+kobot exchanges information between Discord and Max/MSP. Its goal is to provide a connection between live performers and the audience.
 
 ### quick setup(tm)
 #### get discord bot token
 if you follow [this guide](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token) you'll have one in 5 minutes. pick the permissions you need and invite your newborn bot to your server (kobot needs at least Send/Manage Messages, Read Message History and Add Reactions permissions).
 
-#### putting a ghost in the shell
+#### ghost in the shell
 `kobot.js` is configured to read some values from a `config.json` file. here's an example:
 ```
 {
@@ -21,3 +22,6 @@ if you configured everything correctly the bot should start after pressing the (
 https://discordjs.guide/<br>
 https://discord.js.org/<br>
 https://docs.cycling74.com/nodeformax/api/
+
+#### extra
+https://audiomovers.com/ (audio over internet)
