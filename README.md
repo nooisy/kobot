@@ -1,6 +1,6 @@
 # kobot
 [short demo vid](http://www.youtube.com/watch?v=hQeKjJweCzM)<br><br>
-kobot exchanges information between Discord and Max/MSP. Its goal is to provide a connection between live performers and the audience.
+kobot exchanges information between Discord and Max/MSP. its goal is to provide an interactive connection between live performers and their audience. kobot asks yes or no questions on which can be voted, the outcomes influence the performance and its live performers.
 
 ### quick setup(tm)
 #### get discord bot token
@@ -25,3 +25,5 @@ https://docs.cycling74.com/nodeformax/api/
 
 #### extra
 https://audiomovers.com/ (audio over internet)
+
+kobot was part of the 2020 online hku klankontwerp performance
