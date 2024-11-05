@@ -1,5 +1,5 @@
 # kobot
-[short demo vid](https://vimeo.com/818711859)<br><br>
+[short demo vid](https://vimeo.com/818711859/ee32e4e25e)<br><br>
 kobot exchanges information between Discord and Max/MSP. its goal is to provide an interactive connection between live performers and their audience. kobot asks yes or no questions on which can be voted, the outcomes influence the performance and its live performers.
 
 ### quick setup(tm)
